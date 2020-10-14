@@ -1,0 +1,51 @@
+https://gist.github.com/ecaadf97a0f670d0d1ea1d451f50d00b
+
+SELECT COUNT(*)
+FROM countries
+WHERE continent = 'Africa'; 
+
+SELECT * FROM countries
+WHERE continent = 'Oceania';
+
+SELECT SUM(population_years.population) AS 'Total Population of Oceania in 2005'
+FROM population_years
+JOIN countries
+  ON population_years.country_id = countries.id
+WHERE continent = 'Oceania'
+  AND year = 2005;
+
+SELECT ROUND(AVG(population_years.population),3) AS 'Avarage Population in Millions',
+   countries.name AS 'Country',
+   countries.continent
+FROM population_years
+JOIN countries
+  ON population_years.country_id = countries.id
+WHERE continent = 'South America'
+GROUP BY countries.name;
+
+SELECT MIN(population_years.population) AS 'Population',
+   population_years.year,
+   countries.name AS 'Countrie'
+FROM population_years
+JOIN countries
+  ON population_years.country_id = countries.id
+WHERE year = 2007;
+
+SELECT ROUND(AVG(population_years.population),3) AS 'Avarage Population',
+   countries.name
+FROM population_years
+JOIN countries
+  ON population_years.country_id = countries.id
+WHERE countries.name = "Poland";
+
+SELECT COUNT(*)
+FROM countries
+WHERE name LIKE 'The %';
+
+SELECT population_years.population,
+   countries.continent
+FROM population_years
+JOIN countries
+  ON population_years.country_id = countries.id
+WHERE year = 2010
+GROUP BY continent;
